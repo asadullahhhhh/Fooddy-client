@@ -24,6 +24,7 @@ const Navbar = () => {
       }
     }, [isOpen, setIsOpen])
 
+    // Logout related funtionality here
     const handelLogOut = () => {
         logOut()
             .then(() => {
@@ -49,7 +50,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-        to={'/all-groups'}
+        to={'/all-foods'}
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-semibold" : ""
           }
@@ -106,7 +107,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-sm sticky top-0 right-0 z-50">
       <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -146,7 +147,7 @@ const Navbar = () => {
             <div
               ref={dropdownRef}
               onClick={() => setIsOpen(!isOpen)}
-              className="w-10 h-10 rounded-full overflow-hidden border border-gray-200"
+              className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 z-50"
             >
               <img src={user?.photoURL} alt="" className="object-cover"/>
               <div
