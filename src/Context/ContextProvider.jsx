@@ -39,6 +39,9 @@ const ContextProvider = ({children}) => {
             setUser(currentUser)
             setLoading(false)
         }
+        else{
+          setLoading(false)
+        }
     })
 
 

@@ -8,7 +8,7 @@ const Navbar = () => {
     const { isOpen, setIsOpen, user, logOut, setUser } = use(AuthContext);
     // console.log(user);
     const dropdownRef = useRef(null)
-    console.log(dropdownRef);
+    // console.log(dropdownRef);
 
     // dropdown click outside funtionality
     useEffect(()=>{
@@ -151,13 +151,13 @@ const Navbar = () => {
             >
               <img src={user?.photoURL} alt="" className="object-cover"/>
               <div
-                className={`overflow-hidden absolute top-14 rounded-b-sm transition-all duration-200 ${
+                className={`overflow-hidden absolute top-14 rounded-b-sm transition-all duration-200 bg-white ${
                   isOpen ? "scale-100" : "scale-0"
                 }`}
               >
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2"
+                  className="menu menu-sm dropdown-content bg-white bg-base-200 rounded-box z-1 mt-3 w-52 p-2"
                 >
                   {userLinks}
                 </ul>

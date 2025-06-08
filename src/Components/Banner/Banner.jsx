@@ -34,7 +34,7 @@ const Banner = () => {
       }, 10000);
       return () => clearInterval(interval);
     }, [slides.length]);
-    console.log(current);
+    // console.log(current);
 
     return (
       <div className="lg:h-[80vh] md:h-[60vh] h-[40vh] w-full relative overflow-hidden">

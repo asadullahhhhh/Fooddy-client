@@ -5,6 +5,9 @@ import HomePage from "../Pages/HomePage/HomePage";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import AllFoods from "../Pages/AllFoods/AllFoods";
+import FoodDetails from "../Pages/FoodDetails/FoodDetails";
+import Private from "../Private/Private";
+import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
 
 export const route = createBrowserRouter([
   {
@@ -25,7 +28,15 @@ export const route = createBrowserRouter([
       },
       {
         path: "all-foods",
-        Component : AllFoods
+        Component: AllFoods,
+      },
+      {
+        path: "food-details/:id",
+        Component: FoodDetails,
+      },
+      {
+        path: "purchase-food",
+        element : <Private><FoodPurchase></FoodPurchase></Private>
       },
     ],
   },

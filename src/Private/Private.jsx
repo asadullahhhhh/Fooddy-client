@@ -7,9 +7,9 @@ const Private = ({children}) => {
     const {user, loading} = use(AuthContext)
     const location = useLocation()
 
-    if(loading) <div>Loaging...</div>
+    if(loading) return <div>Loaging...</div>
 
-    if(!user) <Navigate to={'/login'} state={location.pathname}></Navigate>
+    if(!user) return <Navigate to={'/login'} state={location.pathname}></Navigate>
 
     return children
 };
