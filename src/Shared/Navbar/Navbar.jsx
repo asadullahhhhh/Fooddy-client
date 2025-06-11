@@ -40,7 +40,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-        to={'/'}
+          to={"/"}
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-semibold" : ""
           }
@@ -50,7 +50,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-        to={'/all-foods'}
+          to={"/all-foods"}
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-semibold" : ""
           }
@@ -60,7 +60,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-        to={'/gallery'}
+          to={"/all-gallery"}
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-semibold" : ""
           }

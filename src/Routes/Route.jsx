@@ -9,6 +9,7 @@ import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 import Private from "../Private/Private";
 import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
 import MyOrder from "../Pages/MyOrder/MyOrder";
+import AllGallery from "../Pages/AllGallery/AllGallery";
 
 export const route = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const route = createBrowserRouter([
       {
         path : "my-orders",
         element : <Private><MyOrder></MyOrder></Private>
+      },
+      {
+        path : "all-gallery",
+        Component : AllGallery
       }
     ],
   },
