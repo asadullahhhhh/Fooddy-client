@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FoodCard from '../../Components/FoodCard/FoodCard';
+import Loading from '../../Shared/Loading/Loading';
 
 const AllFoods = () => {
 
@@ -21,10 +22,10 @@ const AllFoods = () => {
     // console.log(filteredFoods);
 
 
-    if(allFoods.length === 0) return <div><h2>Loading....</h2></div>
+    if(allFoods.length === 0) return <Loading></Loading>
 
     return (
-      <section className="bg-gray-100/5">
+      <section className="bg-gray-100 pb-[100px]">
         <div className="max-w-7xl mx-auto">
           <div>
             <h2 className="text-4xl font-semibold text-center py-5">

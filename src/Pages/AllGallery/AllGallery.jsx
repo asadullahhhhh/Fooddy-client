@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Loading from '../../Shared/Loading/Loading';
 
 const AllGallery = () => {
 
@@ -21,8 +22,10 @@ const AllGallery = () => {
             .then(data => setFoods(data))
     }, [])
 
+    if(!foods) return <Loading></Loading>
+
     return (
-      <section className="bg-gray-100 min-h-[calc(100vh-65px)]">
+      <section className="bg-gray-100 min-h-[calc(100vh-65px)] pb-[100px]">
         <div className="max-w-7xl mx-auto px-5">
           <h2 className="text-center py-5 uppercase md:text-4xl font-medium">
             Our <span className="text-yellow-400/80">Gallery</span>
