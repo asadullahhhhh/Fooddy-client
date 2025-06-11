@@ -18,7 +18,7 @@ const AllFoods = () => {
         food.category.toLowerCase().includes(search.toLowerCase())
     );
 
-    console.log(filteredFoods);
+    // console.log(filteredFoods);
 
 
     if(allFoods.length === 0) return <div><h2>Loading....</h2></div>

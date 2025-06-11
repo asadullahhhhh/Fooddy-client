@@ -73,7 +73,7 @@ const FoodDetails = () => {
                     </p>
                   </div>
                 </div>
-                <Link to={"/purchase-food"}>
+                <Link to={`/purchase-food/${food?._id}`}>
                   <button className="mt-5 cursor-pointer w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition duration-200">
                     Purchase
                   </button>
