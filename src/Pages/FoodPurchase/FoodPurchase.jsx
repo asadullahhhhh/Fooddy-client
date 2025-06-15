@@ -71,7 +71,7 @@ const FoodPurchase = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            navigate('/my-orders')
+            navigate(`/my-orders`)
           }
         })
     }
