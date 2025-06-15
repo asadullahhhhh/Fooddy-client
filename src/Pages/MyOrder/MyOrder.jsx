@@ -12,6 +12,7 @@ const MyOrder = () => {
     const {user} = use(AuthContext)
     const [orders, setOrders] = useState(null)
 
+
     useEffect(() => {
         fetch(
           `http://localhost:5000/ordered-food?email=${user?.email}`
@@ -71,7 +72,7 @@ const MyOrder = () => {
     if(!orders) return <Loading></Loading>
 
     if(orders.length === 0) return (
-      <div className="min-h-[calc(100vh-309px)] flex items-center justify-center">
+      <div className="min-h-[calc(100vh-309px)] bg-gray-100 flex items-center justify-center">
         <div className="space-y-4">
           <h2 className="text-4xl font-semibold text-gray-600">
             No order available

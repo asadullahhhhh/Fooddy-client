@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/ContextProvider";
-import { data, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 

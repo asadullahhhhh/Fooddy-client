@@ -75,7 +75,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          to={"/"}
+          to={"my-food"}
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-semibold" : ""
           }
@@ -85,7 +85,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={"/all-groups"}
+          to={"/add-food"}
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-semibold" : ""
           }
@@ -157,7 +157,7 @@ const Navbar = () => {
               >
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-white bg-base-200 rounded-box z-1 mt-3 w-52 p-2"
+                  className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 p-2"
                 >
                   {userLinks}
                 </ul>

@@ -10,6 +10,8 @@ import Private from "../Private/Private";
 import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import AllGallery from "../Pages/AllGallery/AllGallery";
+import AddFood from "../Pages/AddFood/AddFood";
+import MyAddedFood from "../Pages/MyAddedFood/MyAddedFood";
 
 export const route = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ export const route = createBrowserRouter([
       {
         path : "all-gallery",
         Component : AllGallery
+      },
+      {
+        path : 'add-food',
+        element : <Private><AddFood></AddFood></Private>
+      },
+      {
+        path : 'my-food',
+        element : <Private><MyAddedFood></MyAddedFood></Private>
       }
     ],
   },
