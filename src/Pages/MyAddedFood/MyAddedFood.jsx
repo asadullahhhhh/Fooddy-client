@@ -3,11 +3,12 @@ import { AuthContext } from '../../Context/ContextProvider';
 import { MdEdit } from 'react-icons/md';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyAddedFood = () => {
 
     const {user} = use(AuthContext)
-    const [foods, setFoods] = useState(null)
+    const [foods, setFoods] = useState([])
     const [selectedFood, setSelectedFood] = useState(null);
 
     
@@ -37,6 +38,14 @@ const MyAddedFood = () => {
       "Vegetarian",
     ];
 
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setSelectedFood((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    };
+
     const handelUpdate = e => {
         e.preventDefault()
 
@@ -51,6 +60,15 @@ const MyAddedFood = () => {
         })
             .then(res => {
                 if(res.data.modifiedCount){
+
+                  const updatedFood = foods.map(food => 
+                    food._id === selectedFood._id 
+                     ? {...food, ...formData}
+                     : food
+                  )
+
+                  setFoods(updatedFood)
+
                     document.getElementById("my_modal_1").close();
                     Swal.fire({
                       position: "center",
@@ -63,6 +81,19 @@ const MyAddedFood = () => {
                 }
             })
     }
+
+    if(foods.length === 0) return (
+      <div className="min-h-[calc(100vh-309px)] flex items-center justify-center">
+        <div className='space-y-5'>
+          <h2 className="text-3xl font-semibold text-red-500/70">
+            No added foods found
+          </h2>
+          <div className='text-center'>
+            <Link to={"/add-food"} className='btn btn-neutral'>Add Food</Link>
+          </div>
+        </div>
+      </div>
+    );
 
     return (
       <section className="min-h-[calc(100vh-65px)] bg-gray-100 px-5">
@@ -117,10 +148,16 @@ const MyAddedFood = () => {
             </table>
           </div>
 
+          {/* Modal */}
           <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
-                <h2 className='text-3xl font-semibold text-center py-5 mb-5'>Update Your Food</h2>
-              <form onSubmit={handelUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h2 className="text-3xl font-semibold text-center py-5 mb-5">
+                Update Your Food
+              </h2>
+              <form
+                onSubmit={handelUpdate}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
                 {/* Food Name */}
                 <div>
                   <label className="block text-gray-700 font-medium mb-1">
@@ -130,7 +167,8 @@ const MyAddedFood = () => {
                     type="text"
                     name="name"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
-                    defaultValue={selectedFood?.name}
+                    value={selectedFood?.name}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -143,7 +181,8 @@ const MyAddedFood = () => {
                     type="text"
                     name="image"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
-                    defaultValue={selectedFood?.image}
+                    value={selectedFood?.image}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -155,8 +194,9 @@ const MyAddedFood = () => {
                   <select
                     name="category"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
+                    onChange={handleInputChange}
                   >
-                    <option value="">{selectedFood?.category}</option>
+                    <option value={selectedFood?.category} selected disabled>{selectedFood?.category}</option>
                     {categories.map((item, index) => (
                       <option key={index} value={item}>
                         {item}
@@ -174,7 +214,8 @@ const MyAddedFood = () => {
                     type="text"
                     name="origin"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
-                    defaultValue={selectedFood?.origin}
+                    value={selectedFood?.origin}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -187,7 +228,8 @@ const MyAddedFood = () => {
                     type="number"
                     name="quantity"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
-                    defaultValue={selectedFood?.quantity}
+                    value={selectedFood?.quantity}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -200,7 +242,8 @@ const MyAddedFood = () => {
                     type="number"
                     name="price"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
-                    defaultValue={selectedFood?.price}
+                    value={selectedFood?.price}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -213,7 +256,8 @@ const MyAddedFood = () => {
                     name="description"
                     rows="4"
                     className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none"
-                    defaultValue={selectedFood?.description}
+                    value={selectedFood?.description}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -223,13 +267,15 @@ const MyAddedFood = () => {
                     type="submit"
                     className="btn px-6 btn-neutral text-[15px]"
                   >
-                    Update 
+                    Update
                   </button>
                 </div>
               </form>
               <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}
-                <button className="btn px-8 mt-3 btn-error text-white">Close</button>
+                <button className="btn px-8 mt-3 btn-error text-white">
+                  Close
+                </button>
               </form>
             </div>
           </dialog>
