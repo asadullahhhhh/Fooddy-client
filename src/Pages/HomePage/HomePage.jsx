@@ -1,5 +1,6 @@
 import Banner from '../../Components/Banner/Banner';
 import Fastorder from '../../Components/FastOrder/Fastorder';
+import FindUs from '../../Components/FindUs/FindUs';
 import TopSellingFood from '../../Components/TopSellingFood/TopSellingFood';
 
 const HomePage = () => {
@@ -9,6 +10,7 @@ const HomePage = () => {
             <Banner></Banner>
             <TopSellingFood></TopSellingFood>
             <Fastorder></Fastorder>
+            <FindUs></FindUs>
         </section>
     );
 };
