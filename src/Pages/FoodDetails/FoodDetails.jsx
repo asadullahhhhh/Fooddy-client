@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { AnimatePresence, motion } from "motion/react";
+import Loading from '../../Shared/Loading/Loading';
 
 const FoodDetails = () => {
     const { id } = useParams(); // Get ID from route
@@ -14,7 +15,7 @@ const FoodDetails = () => {
     }, [id]);
 
     if (!food)
-      return <div className="text-center mt-10 text-lg">Loading...</div>;
+      return <Loading></Loading>
 
     return (
       <section className="bg-gray-100 min-h-[calc(100vh-65px)] flex justify-center items-center">
