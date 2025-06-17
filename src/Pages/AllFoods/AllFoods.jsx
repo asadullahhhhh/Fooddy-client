@@ -9,7 +9,7 @@ const AllFoods = () => {
   const { darkLight } = use(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-foods")
+    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foods")
       .then((res) => res.json())
       .then((data) => setAllFoods(data));
   }, []);

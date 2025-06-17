@@ -112,11 +112,11 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-base-100 shadow-sm border-b border-b-gray-100 sticky top-0 right-0 z-50 ${
+      className={`bg-base-100 shadow-sm border-b border-b-gray-100 dark:bg-gray-900 sticky top-0 right-0 z-50 ${
         darkLight ? "dark" : ""
       }`}
     >
-      <div className="navbar max-w-7xl mx-auto dark:bg-gray-900 dark:text-white">
+      <div className="navbar max-w-7xl mx-auto  dark:text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <div

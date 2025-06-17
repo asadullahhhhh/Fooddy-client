@@ -34,7 +34,10 @@ const MyOrder = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/ordered-food`, { data: idObj })
+          .delete(
+            `https://assignment-11-server-mocha-zeta.vercel.app/ordered-food`,
+            { data: idObj }
+          )
           .then((res) => {
             if (res.data.deletedCount) {
               Swal.fire({
@@ -73,7 +76,7 @@ const MyOrder = () => {
 
   return (
     <section
-      className={`min-h-[calc(100vh-65px)] dark:bg-gray-900 ${
+      className={`min-h-[calc(100vh-65px)] dark:bg-gray-900 bg-gray-100 ${
         darkLight ? "dark" : ""
       }`}
     >

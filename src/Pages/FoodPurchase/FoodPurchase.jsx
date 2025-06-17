@@ -15,7 +15,7 @@ const FoodPurchase = () => {
   const { id } = useParams(); // Get ID from route
 
   useEffect(() => {
-    fetch(`http://localhost:5000/food/${id}`)
+    fetch(`https://assignment-11-server-mocha-zeta.vercel.app/food/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -56,18 +56,23 @@ const FoodPurchase = () => {
     };
 
     if (item?.quantity !== 0) {
-      axios.post("http://localhost:5000/ordered-food", dataObj).then((data) => {
-        if (data.data.insertedId || data.data.modifiedCount) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Your order purchase successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate(`/my-orders`);
-        }
-      });
+      axios
+        .post(
+          "https://assignment-11-server-mocha-zeta.vercel.app/ordered-food",
+          dataObj
+        )
+        .then((data) => {
+          if (data.data.insertedId || data.data.modifiedCount) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your order purchase successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate(`/my-orders`);
+          }
+        });
     }
   };
 

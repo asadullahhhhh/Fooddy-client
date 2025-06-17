@@ -42,7 +42,7 @@ const AddFood = () => {
     formFields.purchaseCount = 0;
 
     axios
-      .post("http://localhost:5000/all-foods", {
+      .post("https://assignment-11-server-mocha-zeta.vercel.app/all-foods", {
         data: formFields,
       })
       .then((res) => {

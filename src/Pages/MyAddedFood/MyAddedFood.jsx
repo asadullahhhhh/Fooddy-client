@@ -55,9 +55,12 @@ const MyAddedFood = () => {
     formData.quantity = parseInt(formData.quantity);
 
     axios
-      .put(`http://localhost:5000/update/${selectedFood._id}`, {
-        data: formData,
-      })
+      .put(
+        `https://assignment-11-server-mocha-zeta.vercel.app/update/${selectedFood._id}`,
+        {
+          data: formData,
+        }
+      )
       .then((res) => {
         if (res.data.modifiedCount) {
           const updatedFood = foods.map((food) =>

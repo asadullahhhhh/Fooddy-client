@@ -9,7 +9,7 @@ const TopSellingFood = () => {
   const [topFood, setTopFood] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-foods")
+    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foods")
       .then((res) => res.json())
       .then((data) => {
         const sortedFood = data.sort(
@@ -29,24 +29,24 @@ const TopSellingFood = () => {
 
   return (
     <section
-      className={`py-[70px] max-w-7xl mx-auto px-5 ${
-        darkLight ? "dark" : ""
-      } dark:bg-gray-900`}
+      className={`py-[70px] px-5 ${darkLight ? "dark" : ""} dark:bg-gray-900`}
     >
-      <h2 className="text-3xl font-semibold text-center text-gray-700 dark:text-white uppercase">
-        top selling foods
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-        {topFood.map((food) => (
-          <FoodCard key={food._id} food={food}></FoodCard>
-        ))}
-      </div>
-      <div className="mt-10 text-center">
-        <Link to={"/all-foods"}>
-          <button className="btn btn-warning text-white dark:bg-yellow-500 dark:hover:bg-yellow-400">
-            See All Foods
-          </button>
-        </Link>
+      <div className=" max-w-7xl mx-auto">
+        <h2 className="text-3xl font-semibold text-center text-gray-700 dark:text-white uppercase">
+          top selling foods
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          {topFood.map((food) => (
+            <FoodCard key={food._id} food={food}></FoodCard>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link to={"/all-foods"}>
+            <button className="btn btn-warning text-white dark:bg-yellow-500 dark:hover:bg-yellow-400">
+              See All Foods
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );
