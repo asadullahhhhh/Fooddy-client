@@ -3,10 +3,12 @@ import { AuthContext } from "../../Context/ContextProvider";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const FoodPurchase = () => {
   const { user, darkLight } = use(AuthContext);
   const navigate = useNavigate();
+
 
   // Getting food data from route stat
   const [item, setItem] = useState(null);
@@ -31,6 +33,11 @@ const FoodPurchase = () => {
 
   const handlePurchase = async (e) => {
     e.preventDefault();
+
+    if (item.addedBy.email == user?.email){
+      toast.error("Can't order your own food")
+      return
+    }
 
     const email = user?.email;
     const foodId = item?._id;
