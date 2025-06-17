@@ -1,75 +1,77 @@
-import React, { useEffect, useState } from 'react';
-import FoodCard from '../../Components/FoodCard/FoodCard';
-import Loading from '../../Shared/Loading/Loading';
+import React, { use, useEffect, useState } from "react";
+import FoodCard from "../../Components/FoodCard/FoodCard";
+import Loading from "../../Shared/Loading/Loading";
+import { AuthContext } from "../../Context/ContextProvider";
 
 const AllFoods = () => {
+  const [allFoods, setAllFoods] = useState([]);
+  const [search, setSearch] = useState("");
+  const { darkLight } = use(AuthContext);
 
-    const [allFoods, setAllFoods] = useState([])
-    const [search, setSearch] = useState("")
+  useEffect(() => {
+    fetch("http://localhost:5000/all-foods")
+      .then((res) => res.json())
+      .then((data) => setAllFoods(data));
+  }, []);
 
-    useEffect(()=> {
-        fetch("http://localhost:5000/all-foods")
-            .then(res => res.json())
-            .then(data => setAllFoods(data))
-    }, [])
+  const filteredFoods = allFoods.filter(
+    (food) =>
+      food.name.toLowerCase().includes(search.toLowerCase()) ||
+      food.category.toLowerCase().includes(search.toLowerCase())
+  );
 
-    const filteredFoods = allFoods.filter(
-      (food) =>
-        food.name.toLowerCase().includes(search.toLowerCase()) ||
-        food.category.toLowerCase().includes(search.toLowerCase())
-    );
+  if (allFoods.length === 0) return <Loading />;
 
-    // console.log(filteredFoods);
-
-
-    if(allFoods.length === 0) return <Loading></Loading>
-
-    return (
-      <section className="bg-gray-100 pb-[100px]">
+  return (
+    <section className={`${darkLight ? "dark" : ""}`}>
+      <div className="bg-gray-100 dark:bg-gray-900 pb-[100px] min-h-screen">
         <div className="max-w-7xl mx-auto">
+          {/* Title */}
           <div>
-            <h2 className="text-4xl font-semibold text-center py-5">
+            <h2 className="text-4xl font-semibold text-center py-5 text-gray-800 dark:text-white">
               All Foods
             </h2>
           </div>
-          <div>
-            {allFoods && (
-              <div className="text-center">
-                <label className="input">
-                  <svg
-                    className="h-[1em] opacity-50"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <g
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2.5"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.3-4.3"></path>
-                    </g>
-                  </svg>
-                  <input
-                    onChange={(e) => setSearch(e.target.value)}
-                    type="search"
-                    required
-                    placeholder="Search"
-                  />
-                </label>
-              </div>
-            )}
+
+          {/* Search */}
+          <div className="flex justify-center items-center">
+            <label className="input input-bordered flex items-center gap-2 bg-white dark:bg-gray-800 dark:text-white border dark:border-gray-600">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                onChange={(e) => setSearch(e.target.value)}
+                type="search"
+                required
+                placeholder="Search"
+                className="grow bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+              />
+            </label>
           </div>
+
+          {/* Food Grid */}
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5">
             {filteredFoods.map((food, index) => (
-              <FoodCard key={food._id} food={food} index={index}></FoodCard>
+              <FoodCard key={food._id} food={food} index={index} />
             ))}
           </div>
         </div>
-      </section>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default AllFoods;

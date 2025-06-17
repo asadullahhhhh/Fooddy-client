@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @import "yet-another-react-lightbox/styles.css";
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   font-family: "Poppins", sans-serif;

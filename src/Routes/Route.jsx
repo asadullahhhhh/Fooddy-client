@@ -12,6 +12,7 @@ import MyOrder from "../Pages/MyOrder/MyOrder";
 import AllGallery from "../Pages/AllGallery/AllGallery";
 import AddFood from "../Pages/AddFood/AddFood";
 import MyAddedFood from "../Pages/MyAddedFood/MyAddedFood";
+import Error from "../Pages/ErrorPage/ErrorPage";
 
 export const route = createBrowserRouter([
   {
@@ -60,4 +61,8 @@ export const route = createBrowserRouter([
       }
     ],
   },
+  {
+    path : '*',
+    Component : Error
+  }
 ]);

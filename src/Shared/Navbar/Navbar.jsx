@@ -2,39 +2,43 @@ import React, { use, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/ContextProvider";
 import toast from "react-hot-toast";
+import { getElement, setElement } from "../../Utility/Utility";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const Navbar = () => {
+  const { isOpen, setIsOpen, user, logOut, setUser, darkLight, setDarkLight } =
+    use(AuthContext);
+  const dropdownRef = useRef(null);
 
-    const { isOpen, setIsOpen, user, logOut, setUser } = use(AuthContext);
-    // console.log(user);
-    const dropdownRef = useRef(null)
-    // console.log(dropdownRef);
-
-    // dropdown click outside funtionality
-    useEffect(()=>{
-      const handelClickOutside = e => {
-        if(dropdownRef.current && !dropdownRef.current.contains(e.target)){
-          setIsOpen(false)
-        }
+  useEffect(() => {
+    const handelClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false);
       }
+    };
 
-      document.addEventListener("mousedown", handelClickOutside);
-      return ()=> {
-        document.removeEventListener("mousedown", handelClickOutside)
-      }
-    }, [isOpen, setIsOpen])
+    document.addEventListener("mousedown", handelClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handelClickOutside);
+    };
+  }, [isOpen, setIsOpen]);
 
-    // Logout related funtionality here
-    const handelLogOut = () => {
-        logOut()
-            .then(() => {
-                setUser(null)
-                toast.success("Logout successful")
-            })
-            .catch(err => {
-                toast.error(err.message)
-            })
-    }
+  const handelLogOut = () => {
+    logOut()
+      .then(() => {
+        setUser(null);
+        toast.success("Logout successful");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
+  const handelDarkMood = () => {
+    setElement(!darkLight);
+    const getData = getElement;
+    setDarkLight(getData);
+  };
 
   const links = (
     <>
@@ -42,7 +46,7 @@ const Navbar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : ""
+            isActive ? "text-blue-500 font-semibold" : "dark:text-white"
           }
         >
           Home
@@ -52,7 +56,7 @@ const Navbar = () => {
         <NavLink
           to={"/all-foods"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : ""
+            isActive ? "text-blue-500 font-semibold" : "dark:text-white"
           }
         >
           All Foods
@@ -62,7 +66,7 @@ const Navbar = () => {
         <NavLink
           to={"/all-gallery"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : ""
+            isActive ? "text-blue-500 font-semibold" : "dark:text-white"
           }
         >
           Gallery
@@ -77,7 +81,7 @@ const Navbar = () => {
         <NavLink
           to={"my-food"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : ""
+            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
           }
         >
           My Foods
@@ -87,7 +91,7 @@ const Navbar = () => {
         <NavLink
           to={"/add-food"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : ""
+            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
           }
         >
           Add food
@@ -97,7 +101,7 @@ const Navbar = () => {
         <NavLink
           to={`/my-orders`}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : ""
+            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
           }
         >
           My Orders
@@ -107,11 +111,19 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-base-100 shadow-sm sticky top-0 right-0 z-50">
-      <div className="navbar max-w-7xl mx-auto">
+    <div
+      className={`bg-base-100 shadow-sm border-b border-b-gray-100 sticky top-0 right-0 z-50 ${
+        darkLight ? "dark" : ""
+      }`}
+    >
+      <div className="navbar max-w-7xl mx-auto dark:bg-gray-900 dark:text-white">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden dark:text-white"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -119,23 +131,22 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 dark:bg-gray-800 dark:text-white rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="text-2xl font-semibold">
+          <Link to={"/"} className="text-2xl font-semibold dark:text-white">
             Food<span className="text-yellow-500">dy</span>
           </Link>
         </div>
@@ -147,17 +158,17 @@ const Navbar = () => {
             <div
               ref={dropdownRef}
               onClick={() => setIsOpen(!isOpen)}
-              className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 z-50"
+              className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 z-50 cursor-pointer"
             >
-              <img src={user?.photoURL} alt="" className="object-cover"/>
+              <img src={user?.photoURL} alt="" className="object-cover" />
               <div
-                className={`overflow-hidden absolute top-14 rounded-b-sm transition-all duration-200 bg-white ${
+                className={`overflow-hidden absolute top-14 rounded-b-sm transition-all duration-200 bg-white dark:bg-gray-700 ${
                   isOpen ? "scale-100" : "scale-0"
                 }`}
               >
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 p-2"
+                  className="menu menu-sm dropdown-content bg-white dark:bg-gray-700 rounded-box z-1 mt-3 p-2"
                 >
                   {userLinks}
                 </ul>
@@ -166,10 +177,29 @@ const Navbar = () => {
           ) : (
             " "
           )}
+          <div onClick={handelDarkMood}>
+            {darkLight ? (
+              <button className="btn btn-sm md:btn-md dark:bg-[#333] dark:border-gray-600">
+                <MdDarkMode color="#fff" />
+              </button>
+            ) : (
+              <button className="btn">
+                <MdOutlineLightMode />
+              </button>
+            )}
+          </div>
           {user ? (
-            <button onClick={handelLogOut} className="btn">Log out</button>
+            <button
+              onClick={handelLogOut}
+              className="btn dark:bg-gray-700 dark:text-white"
+            >
+              Log out
+            </button>
           ) : (
-            <Link to={"/login"} className="btn">
+            <Link
+              to={"/login"}
+              className="btn dark:bg-gray-700 dark:text-white"
+            >
               Log in
             </Link>
           )}

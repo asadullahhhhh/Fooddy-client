@@ -1,11 +1,15 @@
+import { use } from "react";
 import {
   FaMapMarkerAlt,
   FaUtensils,
   FaHamburger,
   FaMotorcycle,
 } from "react-icons/fa";
+import { AuthContext } from "../../Context/ContextProvider";
 
 export default function Fastorder() {
+  const { darkLight } = use(AuthContext);
+
   const steps = [
     {
       icon: <FaMapMarkerAlt size={40} />,
@@ -26,9 +30,15 @@ export default function Fastorder() {
   ];
 
   return (
-    <div className="relative text-center pb-[60px] px-5">
-      <h2 className="md:text-3xl text-2xl font-bold mb-2">GET YOUR FOOD FAST & EASY</h2>
-      <p className="text-gray-400 mb-10">Follow the Steps</p>
+    <div
+      className={`relative text-center pb-[60px] px-5 ${
+        darkLight ? "dark" : ""
+      } dark:bg-gray-900`}
+    >
+      <h2 className="md:text-3xl text-2xl font-bold mb-2 dark:text-white">
+        GET YOUR FOOD FAST & EASY
+      </h2>
+      <p className="text-gray-400 mb-10 dark:text-gray-300">Follow the Steps</p>
 
       <div className="relative flex flex-col md:flex-row justify-center items-center gap-16 max-w-6xl mx-auto">
         {steps.map((step, index) => (
@@ -36,11 +46,15 @@ export default function Fastorder() {
             key={index}
             className="flex flex-col items-center text-center relative"
           >
-            <div className="text-gray-700 mb-4">{step.icon}</div>
-            <div className="bg-yellow-400 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold mb-2">
+            <div className="text-gray-700 mb-4 dark:text-yellow-300">
+              {step.icon}
+            </div>
+            <div className="bg-yellow-400 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold mb-2 dark:bg-yellow-500">
               {index + 1}
             </div>
-            <p className="text-gray-700 font-medium">{step.label}</p>
+            <p className="text-gray-700 font-medium dark:text-white">
+              {step.label}
+            </p>
 
             {/* Arrow (for all except last item) */}
             {index < steps.length - 1 && (

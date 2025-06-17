@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Firebase/Firebase.init";
+import { getElement } from "../Utility/Utility";
 
 
 export const AuthContext = createContext(null)
@@ -10,6 +11,12 @@ const ContextProvider = ({children}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [darkLight, setDarkLight] = useState(false);
+
+  useEffect(() => {
+    const data = getElement();
+    setDarkLight(data);
+  }, [setDarkLight]);
 
   // Email and Password Sign up
   const signUp = (email, password) => {
@@ -59,7 +66,9 @@ const ContextProvider = ({children}) => {
     logOut,
     user,
     loading,
-    setUser
+    setUser,
+    darkLight,
+    setDarkLight
   };
 
   return <AuthContext value={info}>{children}</AuthContext>;
