@@ -6,19 +6,22 @@ import moment from 'moment/moment';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 const MyOrder = () => {
 
     const {user} = use(AuthContext)
     const [orders, setOrders] = useState(null)
+    const axiosSecure = useAxiosSecure()
 
 
     useEffect(() => {
-        fetch(
-          `http://localhost:5000/ordered-food?email=${user?.email}`
-        ).then(res => res.json())
-            .then(data => setOrders(data))
-    }, [user])
+
+        axiosSecure(`ordered-food?email=${user?.email}`)
+          .then(data => {
+            setOrders(data?.data)
+          })
+    }, [user, axiosSecure])
 
     // Handel the delete order-button here
     const handelOrderDelete = (id, foodId, quantity) => {

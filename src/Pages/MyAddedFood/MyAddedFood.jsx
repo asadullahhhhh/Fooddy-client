@@ -4,20 +4,24 @@ import { MdEdit } from 'react-icons/md';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 const MyAddedFood = () => {
 
     const {user} = use(AuthContext)
     const [foods, setFoods] = useState([])
     const [selectedFood, setSelectedFood] = useState(null);
+    const axiosSecure = useAxiosSecure()
 
     
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-foods?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setFoods(data))
-    }, [user])
+
+      axiosSecure(`my-foods?email=${user?.email}`)
+        .then(res => {
+          setFoods(res.data)
+        })
+    }, [user, axiosSecure])
 
     const categories = [
       "Bagetci",

@@ -14,7 +14,7 @@ const AllGallery = () => {
         src : food.image 
     }))
 
-    console.log(slides);
+    // console.log(slides);
 
     useEffect(()=> {
         fetch("http://localhost:5000/all-foods")
