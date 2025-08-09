@@ -2,25 +2,54 @@ import React, { use, useEffect, useState } from "react";
 import FoodCard from "../../Components/FoodCard/FoodCard";
 import Loading from "../../Shared/Loading/Loading";
 import { AuthContext } from "../../Context/ContextProvider";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useInView } from "react-intersection-observer";
+import { RingLoader } from "react-spinners";
+import FoodCardSkeleton from "../../Components/FoodCardSkeleton/FoodCardSkeleton";
 
 const AllFoods = () => {
-  const [allFoods, setAllFoods] = useState([]);
   const [search, setSearch] = useState("");
   const { darkLight } = use(AuthContext);
 
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["foods", { search }],
+    queryFn: async ({ pageParam = 1, queryKey }) => {
+      const [_key, { search }] = queryKey;
+      const res = await axios.get(`http://localhost:5000/all-foods`, {
+        params: {
+          page: pageParam,
+          limit: 9,
+          search,
+        },
+      });
+      return res?.data;
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage?.hasMore ? allPages.length + 1 : undefined;
+    },
+  });
+
+  const { ref, inView } = useInView({
+    threshold: 1,
+  });
+
   useEffect(() => {
-    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foods")
-      .then((res) => res.json())
-      .then((data) => setAllFoods(data));
-  }, []);
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  const filteredFoods = allFoods.filter(
-    (food) =>
-      food.name.toLowerCase().includes(search.toLowerCase()) ||
-      food.category.toLowerCase().includes(search.toLowerCase())
-  );
+  const foods = data?.pages.flatMap((page) => page.foods);
 
-  if (allFoods.length === 0) return <Loading />;
+  console.log(foods);
 
   return (
     <section className={`${darkLight ? "dark" : ""}`}>
@@ -62,12 +91,29 @@ const AllFoods = () => {
             </label>
           </div>
 
-          {/* Food Grid */}
-          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5">
-            {filteredFoods.map((food, index) => (
-              <FoodCard key={food._id} food={food} index={index} />
-            ))}
-          </div>
+          {isLoading ? (
+            <FoodCardSkeleton></FoodCardSkeleton>
+          ) : (
+            <>
+              {/* Food Grid */}
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5">
+                {foods?.map((food, index) => (
+                  <FoodCard key={food._id} food={food} index={index} />
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Infinite scroll trigger */}
+          {hasNextPage && (
+            <div ref={ref} className="h-10 my-10 py-10">
+              {isFetchingNextPage && (
+                <div className="flex justify-center items-center">
+                  <RingLoader color={darkLight ? "#fff" : "#000"} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>
