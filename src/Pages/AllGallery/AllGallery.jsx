@@ -4,6 +4,7 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Loading from "../../Shared/Loading/Loading";
 import { AuthContext } from "../../Context/ContextProvider";
+import GallerySkeleton from "../../Components/GallerySkeleton/GallerySkeleton";
 
 const AllGallery = () => {
   const [foods, setFoods] = useState(null);
@@ -22,7 +23,7 @@ const AllGallery = () => {
       .then((data) => setFoods(data));
   }, []);
 
-  if (!foods) return <Loading />;
+  if (!foods) return <GallerySkeleton></GallerySkeleton>
 
   return (
     <section className={`${darkLight ? "dark" : ""}`}>
