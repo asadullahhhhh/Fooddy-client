@@ -63,7 +63,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Side */}
-      <div className="hidden md:flex w-[40%] h-screen bg-gray-100 relative">
+      <div className="hidden md:flex w-[50%] h-screen bg-gray-100 relative">
         <div className="absolute h-full w-full bg-black/50"></div>
         <img
           src={bg}
@@ -92,7 +92,7 @@ const Login = () => {
       </div>
 
       {/* Right Side */}
-      <div className="flex w-full md:w-1/2 justify-center items-center p-8">
+      <div className="flex w-full bg-gradient-to-tr from-green-50 via-orange-100/70 to-blue-50 justify-center items-center p-8">
         <div className="max-w-md w-full space-y-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
@@ -109,8 +109,8 @@ const Login = () => {
 
           {/* Heading */}
           <div>
-            <h2 className="text-2xl font-bold">Welcome back to Foody</h2>
-            <p className="text-gray-500 text-sm mt-1">
+            <h2 className="text-2xl text-center font-bold">Welcome back to Foody</h2>
+            <p className="text-gray-500 text-center max-w-sm mx-auto text-sm mt-1">
               Discover mouthwatering dishes, order your favorites, and enjoy
               fresh flavors anytime.
             </p>
@@ -193,7 +193,7 @@ const Login = () => {
             {/* Signup Link */}
             <p className="text-sm text-center text-gray-500">
               Don’t have an account?{" "}
-              <Link className="text-blue-600 underline">Sign up</Link>
+              <Link to={"/signup"} className="text-blue-600 underline">Sign up</Link>
             </p>
           </form>
         </div>

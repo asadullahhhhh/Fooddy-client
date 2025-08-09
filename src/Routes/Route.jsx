@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router";
 import RootLayouts from "../Layouts/RootLayouts";
 import HomePage from "../Pages/HomePage/HomePage";
@@ -24,10 +23,6 @@ export const route = createBrowserRouter([
         Component: HomePage,
       },
       {
-        path: "signup",
-        Component: Signup,
-      },
-      {
         path: "all-foods",
         Component: AllFoods,
       },
@@ -37,32 +32,52 @@ export const route = createBrowserRouter([
       },
       {
         path: "purchase-food/:id",
-        element : <Private><FoodPurchase></FoodPurchase></Private>
+        element: (
+          <Private>
+            <FoodPurchase></FoodPurchase>
+          </Private>
+        ),
       },
       {
-        path : "my-orders",
-        element : <Private><MyOrder></MyOrder></Private>
+        path: "my-orders",
+        element: (
+          <Private>
+            <MyOrder></MyOrder>
+          </Private>
+        ),
       },
       {
-        path : "all-gallery",
-        Component : AllGallery
+        path: "all-gallery",
+        Component: AllGallery,
       },
       {
-        path : 'add-food',
-        element : <Private><AddFood></AddFood></Private>
+        path: "add-food",
+        element: (
+          <Private>
+            <AddFood></AddFood>
+          </Private>
+        ),
       },
       {
-        path : 'my-food',
-        element : <Private><MyAddedFood></MyAddedFood></Private>
-      }
+        path: "my-food",
+        element: (
+          <Private>
+            <MyAddedFood></MyAddedFood>
+          </Private>
+        ),
+      },
     ],
   },
   {
-     path: "login",
-     Component: Login,
+    path: "login",
+    Component: Login,
   },
   {
-    path : '*',
-    Component : Error
-  }
+    path: "signup",
+    Component: Signup,
+  },
+  {
+    path: "*",
+    Component: Error,
+  },
 ]);
