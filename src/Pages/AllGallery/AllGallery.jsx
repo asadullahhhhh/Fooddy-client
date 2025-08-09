@@ -26,7 +26,7 @@ const AllGallery = () => {
   if (!foods) return <GallerySkeleton></GallerySkeleton>
 
   return (
-    <section className={`${darkLight ? "dark" : ""}`}>
+    <section className={`${darkLight ? "dark" : ""} mt-[64px] lg:mt-[72px]`}>
       <div className="bg-gray-100 dark:bg-gray-900 min-h-[calc(100vh-65px)] pb-[100px]">
         <div className="max-w-7xl mx-auto px-5">
           <h2 className="text-center py-5 uppercase md:text-4xl font-medium text-gray-800 dark:text-white">

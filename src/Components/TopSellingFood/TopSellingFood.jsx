@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import FoodCard from "../FoodCard/FoodCard";
 import { Link } from "react-router";
 import { AuthContext } from "../../Context/ContextProvider";
+import SkeletonFoodCard from "../SkeletonFoodCard/SkeletonFoodCard";
 
 const TopSellingFood = () => {
   const { darkLight } = use(AuthContext);
@@ -20,12 +21,6 @@ const TopSellingFood = () => {
       });
   }, []);
 
-  if (topFood.length === 0)
-    return (
-      <div className="flex items-center justify-center min-h-[50vh] dark:bg-gray-900">
-        <span className="loading loading-dots loading-xl"></span>
-      </div>
-    );
 
   return (
     <section
@@ -36,11 +31,12 @@ const TopSellingFood = () => {
           top selling foods
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-          {topFood.map((food) => (
+          {topFood?.length === 0 ? Array(6).fill(0).map((_, i) => <SkeletonFoodCard key={i} />)
+           : topFood.map((food) => (
             <FoodCard key={food._id} food={food}></FoodCard>
           ))}
         </div>
-        <div className="mt-10 text-center">
+        <div className="mt-10">
           <Link to={"/all-foods"}>
             <button className="btn btn-warning text-white dark:bg-yellow-500 dark:hover:bg-yellow-400">
               See All Foods

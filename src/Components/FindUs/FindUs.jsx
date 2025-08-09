@@ -45,7 +45,7 @@ export default function FindUs() {
         darkLight ? "dark" : ""
       } dark:bg-gray-900`}
     >
-      <div className="max-w-6xl mx-auto mb-10">
+      <div className="max-w-7xl mx-auto mb-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center dark:text-white">
           Find us in these cities and many more!
         </h2>

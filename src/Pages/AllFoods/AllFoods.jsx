@@ -52,7 +52,7 @@ const AllFoods = () => {
   console.log(foods);
 
   return (
-    <section className={`${darkLight ? "dark" : ""}`}>
+    <section className={`${darkLight ? "dark" : ""} mt-[64px] lg:mt-[72px]`}>
       <div className="bg-gray-100 dark:bg-gray-900 pb-[100px] min-h-screen">
         <div className="max-w-7xl mx-auto">
           {/* Title */}

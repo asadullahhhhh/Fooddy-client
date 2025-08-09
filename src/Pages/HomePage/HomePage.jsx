@@ -6,7 +6,7 @@ import TopSellingFood from '../../Components/TopSellingFood/TopSellingFood';
 const HomePage = () => {
 
     return (
-        <section>
+        <section className='mt-[64px] lg:mt-[72px]'>
             <Banner></Banner>
             <TopSellingFood></TopSellingFood>
             <Fastorder></Fastorder>

@@ -112,9 +112,9 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-base-100 shadow-sm border-b border-b-gray-100 dark:bg-gray-900 sticky top-0 right-0 z-50 ${
-        darkLight ? "dark" : ""
-      }`}
+      className={`fixed top-0 left-0 w-full backdrop-blur-md lg:h-[72px] border-b duration-500 z-50 transition-colors
+    bg-white/60 border-white/30 shadow-sm
+    dark:bg-[#0f172a]/70 dark:border-gray-700 ${darkLight ? "dark" : ""}`}
     >
       <div className="navbar max-w-7xl mx-auto  dark:text-white">
         <div className="navbar-start">
@@ -146,9 +146,14 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="text-2xl font-semibold dark:text-white">
-            Food<span className="text-yellow-500">dy</span>
-          </Link>
+          <div className="text-gray-600 dark:text-gray-200 top-10 left-10 text-4xl font-semibold">
+            <Link to={"/"}>
+              <p>
+                F<span className="text-orange-400">O</span>
+                <span className="-ml-4 text-orange-400">O</span>DY
+              </p>
+            </Link>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>

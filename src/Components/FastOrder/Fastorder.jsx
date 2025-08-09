@@ -40,7 +40,7 @@ export default function Fastorder() {
       </h2>
       <p className="text-gray-400 mb-10 dark:text-gray-300">Follow the Steps</p>
 
-      <div className="relative flex flex-col md:flex-row justify-center items-center gap-16 max-w-6xl mx-auto">
+      <div className="relative flex flex-col md:flex-row justify-center items-center gap-16 w-full">
         {steps.map((step, index) => (
           <div
             key={index}
