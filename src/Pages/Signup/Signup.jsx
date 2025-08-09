@@ -91,138 +91,150 @@ const Signup = () => {
       </div>
 
       {/* Right Side */}
-      <div className="flex w-full bg-gradient-to-tr from-green-50 via-orange-100/70 to-blue-50 justify-center items-center p-8">
-        <div className="max-w-md w-full space-y-6">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-orange-400 rounded-full"></div>
-            <div className="text-gray-600 top-10 left-10 text-4xl font-semibold ">
-              <Link to={"/"}>
-                <p>
-                  F<span className="text-orange-400">O</span>
-                  <span className="-ml-4 text-orange-400">O</span>DY
-                </p>
-              </Link>
-            </div>
-          </div>
-
-          {/* Heading */}
-          <div>
-            <h2 className="text-2xl text-center font-bold">
-              Create you account
-            </h2>
-            <p className="text-gray-500 text-center text-sm mt-1">
-              Join us today and order your favorite food
-            </p>
-          </div>
-
-          {/* Form */}
-          <form className="space-y-5" onSubmit={handleSubmit(handelSignup)}>
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-medium">Name</label>
-              <input
-                type="text"
-                placeholder="Your full name"
-                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500"
-                {...register("name", {
-                  required: "Name is required",
-                })}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium">Email</label>
-              <input
-                type="email"
-                placeholder="alex.jordan@gmail.com"
-                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^\S+@\S+$/i,
-                    message: "Invalid email address",
-                  },
-                })}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            {/* Password */}
-            <div className="relative">
-              <div className="absolute top-[55%] cursor-pointer right-[5%]" onClick={() => setShow(!show)}>{show ? <FaEyeSlash size={20}></FaEyeSlash> : <FaEye size={20}></FaEye>}</div>
-              <label className="block text-sm font-medium">Password</label>
-              <input
-                type={show ? 'text' : 'password'}
-                placeholder="••••••••"
-                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters",
-                  },
-                  pattern: {
-                    value: /^(?=.*[A-Z])(?=.*\d).+$/,
-                    message:
-                      "Password must contain at least one uppercase letter and one number",
-                  },
-                })}
-              />
-
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-
-            {/* Login Button */}
-            <button
-              type="submit"
-              disabled={login}
-              className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer text-white py-2 rounded-lg font-medium transition"
-            >
-              {login ? <HashLoader color="#fff" size={17} /> : "Sign up"}
-            </button>
-
-            {/* Divider */}
-            <div className="flex items-center gap-2">
-              <hr className="flex-grow border-gray-300" />
-              <span className="text-gray-500 text-sm">OR</span>
-              <hr className="flex-grow border-gray-300" />
-            </div>
-
-            {/* Google Button */}
-            <button
-              onClick={handelGoogle}
-              type="button"
-              className="w-full flex cursor-pointer items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition"
-            >
-              <FcGoogle size={20} />
-              Continue with Google
-            </button>
-
-            {/* Signup Link */}
-            <p className="text-sm text-center text-gray-500">
-              Already have an account?{" "}
-              <Link to={"/login"} className="text-blue-600 underline">
-                login
-              </Link>
-            </p>
-          </form>
-        </div>
+     <div
+  className={`flex w-full ${
+    darkLight ? "dark" : ""
+  } bg-gradient-to-tr from-green-50 via-orange-100/70 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 justify-center items-center p-8`}
+>
+  <div className="max-w-md w-full space-y-6">
+    {/* Logo */}
+    <div className="flex items-center gap-2">
+      <div className="w-6 h-6 bg-orange-400 rounded-full"></div>
+      <div className="text-gray-600 dark:text-gray-200 top-10 left-10 text-4xl font-semibold">
+        <Link to={"/"}>
+          <p>
+            F<span className="text-orange-400">O</span>
+            <span className="-ml-4 text-orange-400">O</span>DY
+          </p>
+        </Link>
       </div>
+    </div>
+
+    {/* Heading */}
+    <div>
+      <h2 className="text-2xl text-center font-bold dark:text-white">
+        Create your account
+      </h2>
+      <p className="text-gray-500 dark:text-gray-400 text-center text-sm mt-1">
+        Join us today and order your favorite food
+      </p>
+    </div>
+
+    {/* Form */}
+    <form className="space-y-5" onSubmit={handleSubmit(handelSignup)}>
+      {/* Name */}
+      <div>
+        <label className="block text-sm font-medium dark:text-gray-300">
+          Name
+        </label>
+        <input
+          type="text"
+          placeholder="Your full name"
+          className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          {...register("name", {
+            required: "Name is required",
+          })}
+        />
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+        )}
+      </div>
+
+      {/* Email */}
+      <div>
+        <label className="block text-sm font-medium dark:text-gray-300">
+          Email
+        </label>
+        <input
+          type="email"
+          placeholder="alex.jordan@gmail.com"
+          className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: "Invalid email address",
+            },
+          })}
+        />
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+        )}
+      </div>
+
+      {/* Password */}
+      <div className="relative">
+        <div
+          className="absolute top-[55%] cursor-pointer right-[5%] text-gray-600 dark:text-gray-300"
+          onClick={() => setShow(!show)}
+        >
+          {show ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+        </div>
+        <label className="block text-sm font-medium dark:text-gray-300">
+          Password
+        </label>
+        <input
+          type={show ? "text" : "password"}
+          placeholder="••••••••"
+          className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          {...register("password", {
+            required: "Password is required",
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters",
+            },
+            pattern: {
+              value: /^(?=.*[A-Z])(?=.*\d).+$/,
+              message:
+                "Password must contain at least one uppercase letter and one number",
+            },
+          })}
+        />
+
+        {errors.password && (
+          <p className="text-red-500 text-sm mt-1">
+            {errors.password.message}
+          </p>
+        )}
+      </div>
+
+      {/* Login Button */}
+      <button
+        type="submit"
+        disabled={login}
+        className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer text-white py-2 rounded-lg font-medium transition dark:bg-blue-500 dark:hover:bg-blue-600"
+      >
+        {login ? <HashLoader color="#fff" size={17} /> : "Sign up"}
+      </button>
+
+      {/* Divider */}
+      <div className="flex items-center gap-2">
+        <hr className="flex-grow border-gray-300 dark:border-gray-600" />
+        <span className="text-gray-500 dark:text-gray-400 text-sm">OR</span>
+        <hr className="flex-grow border-gray-300 dark:border-gray-600" />
+      </div>
+
+      {/* Google Button */}
+      <button
+        onClick={handelGoogle}
+        type="button"
+        className="w-full flex cursor-pointer items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white transition"
+      >
+        <FcGoogle size={20} />
+        Continue with Google
+      </button>
+
+      {/* Signup Link */}
+      <p className="text-sm text-center text-gray-500 dark:text-gray-400">
+        Already have an account?{" "}
+        <Link to={"/login"} className="text-blue-600 dark:text-blue-400 underline">
+          login
+        </Link>
+      </p>
+    </form>
+  </div>
+</div>
+
     </div>
   );
 };
