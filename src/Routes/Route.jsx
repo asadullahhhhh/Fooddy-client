@@ -24,10 +24,6 @@ export const route = createBrowserRouter([
         Component: HomePage,
       },
       {
-        path: "login",
-        Component: Login,
-      },
-      {
         path: "signup",
         Component: Signup,
       },
@@ -60,6 +56,10 @@ export const route = createBrowserRouter([
         element : <Private><MyAddedFood></MyAddedFood></Private>
       }
     ],
+  },
+  {
+     path: "login",
+     Component: Login,
   },
   {
     path : '*',
