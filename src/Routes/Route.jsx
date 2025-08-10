@@ -13,6 +13,7 @@ import AddFood from "../Pages/AddFood/AddFood";
 import MyAddedFood from "../Pages/MyAddedFood/MyAddedFood";
 import Error from "../Pages/ErrorPage/ErrorPage";
 import Menu from "../Pages/Menu/Menu";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const route = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const route = createBrowserRouter([
       {
         path : 'menu',
         Component : Menu
+      },
+      {
+        path : 'aboutus',
+        Component : AboutUs
       },
       {
         path: "purchase-food/:id",

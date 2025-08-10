@@ -66,7 +66,7 @@ const Navbar = () => {
         <NavLink
           to={`/menu`}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
+            isActive ? "text-blue-500 font-semibold" : "dark:text-white"
           }
         >
           Menu
@@ -80,6 +80,16 @@ const Navbar = () => {
           }
         >
           Gallery
+        </NavLink>
+      </li>
+       <li>
+        <NavLink
+          to={"/aboutus"}
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-semibold" : "dark:text-white"
+          }
+        >
+          About Us
         </NavLink>
       </li>
     </>
