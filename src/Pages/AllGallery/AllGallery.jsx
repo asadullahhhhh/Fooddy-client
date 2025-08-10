@@ -18,12 +18,12 @@ const AllGallery = () => {
   }));
 
   useEffect(() => {
-    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foods")
+    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foodss")
       .then((res) => res.json())
       .then((data) => setFoods(data));
   }, []);
 
-  if (!foods) return <GallerySkeleton></GallerySkeleton>
+  if (!foods) return <GallerySkeleton></GallerySkeleton>;
 
   return (
     <section className={`${darkLight ? "dark" : ""} mt-[64px] lg:mt-[72px]`}>

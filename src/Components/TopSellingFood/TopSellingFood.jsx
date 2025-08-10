@@ -8,11 +8,13 @@ const TopSellingFood = () => {
   const { darkLight } = use(AuthContext);
 
   const [topFood, setTopFood] = useState([]);
+  console.log(topFood);
 
   useEffect(() => {
-    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foods")
+    fetch("https://assignment-11-server-mocha-zeta.vercel.app/all-foodss")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         const sortedFood = data.sort(
           (a, b) => b.purchaseCount - a.purchaseCount
         );

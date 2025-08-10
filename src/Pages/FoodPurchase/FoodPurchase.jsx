@@ -9,7 +9,6 @@ const FoodPurchase = () => {
   const { user, darkLight } = use(AuthContext);
   const navigate = useNavigate();
 
-
   // Getting food data from route stat
   const [item, setItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -34,9 +33,9 @@ const FoodPurchase = () => {
   const handlePurchase = async (e) => {
     e.preventDefault();
 
-    if (item.addedBy.email == user?.email){
-      toast.error("Can't order your own food")
-      return
+    if (item.addedBy.email == user?.email) {
+      toast.error("Can't order your own food");
+      return;
     }
 
     const email = user?.email;

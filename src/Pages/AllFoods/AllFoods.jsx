@@ -12,30 +12,28 @@ const AllFoods = () => {
   const [sort, setSort] = useState(""); // new state for sorting
   const { darkLight } = use(AuthContext);
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isLoading,
-  } = useInfiniteQuery({
-    queryKey: ["foods", { search, sort }],
-    queryFn: async ({ pageParam = 1, queryKey }) => {
-      const [_key, { search, sort }] = queryKey;
-      const res = await axios.get(`http://localhost:5000/all-foods`, {
-        params: {
-          page: pageParam,
-          limit: 9,
-          search,
-          sort,
-        },
-      });
-      return res?.data;
-    },
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage?.hasMore ? allPages.length + 1 : undefined;
-    },
-  });
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfiniteQuery({
+      queryKey: ["foods", { search, sort }],
+      queryFn: async ({ pageParam = 1, queryKey }) => {
+        const [_key, { search, sort }] = queryKey;
+        const res = await axios.get(
+          `https://assignment-11-server-mocha-zeta.vercel.app/all-foods`,
+          {
+            params: {
+              page: pageParam,
+              limit: 9,
+              search,
+              sort,
+            },
+          }
+        );
+        return res?.data;
+      },
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage?.hasMore ? allPages.length + 1 : undefined;
+      },
+    });
 
   const { ref, inView } = useInView({
     threshold: 1,
