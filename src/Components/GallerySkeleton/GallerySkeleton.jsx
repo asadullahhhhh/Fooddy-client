@@ -8,7 +8,7 @@ const GallerySkeleton = () => {
     const { darkLight } = use(AuthContext);
 
   return (
-    <div className={`${darkLight ? "dark" : ""} dark:bg-gray-900`}>
+    <div className={`${darkLight ? "dark" : ""} dark:bg-gray-900 mt-[64px] lg:mt-[72px]`}>
       <div
         className="gallery-skeleton max-w-7xl columns-1 md:columns-2 lg:columns-3 gap-5 py-16 mx-auto"
         // style={{

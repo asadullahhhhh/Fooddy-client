@@ -12,6 +12,7 @@ import AllGallery from "../Pages/AllGallery/AllGallery";
 import AddFood from "../Pages/AddFood/AddFood";
 import MyAddedFood from "../Pages/MyAddedFood/MyAddedFood";
 import Error from "../Pages/ErrorPage/ErrorPage";
+import Menu from "../Pages/Menu/Menu";
 
 export const route = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const route = createBrowserRouter([
       {
         path: "food-details/:id",
         Component: FoodDetails,
+      },
+      {
+        path : 'menu',
+        Component : Menu
       },
       {
         path: "purchase-food/:id",
