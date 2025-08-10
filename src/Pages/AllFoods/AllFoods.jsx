@@ -1,6 +1,5 @@
 import React, { use, useEffect, useState } from "react";
 import FoodCard from "../../Components/FoodCard/FoodCard";
-import Loading from "../../Shared/Loading/Loading";
 import { AuthContext } from "../../Context/ContextProvider";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -10,6 +9,7 @@ import FoodCardSkeleton from "../../Components/FoodCardSkeleton/FoodCardSkeleton
 
 const AllFoods = () => {
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState(""); // new state for sorting
   const { darkLight } = use(AuthContext);
 
   const {
@@ -18,16 +18,16 @@ const AllFoods = () => {
     hasNextPage,
     isFetchingNextPage,
     isLoading,
-    refetch,
   } = useInfiniteQuery({
-    queryKey: ["foods", { search }],
+    queryKey: ["foods", { search, sort }],
     queryFn: async ({ pageParam = 1, queryKey }) => {
-      const [_key, { search }] = queryKey;
+      const [_key, { search, sort }] = queryKey;
       const res = await axios.get(`http://localhost:5000/all-foods`, {
         params: {
           page: pageParam,
           limit: 9,
           search,
+          sort,
         },
       });
       return res?.data;
@@ -49,8 +49,6 @@ const AllFoods = () => {
 
   const foods = data?.pages.flatMap((page) => page.foods);
 
-  console.log(foods);
-
   return (
     <section className={`${darkLight ? "dark" : ""} mt-[64px] lg:mt-[72px]`}>
       <div className="bg-gray-100 dark:bg-gray-900 pb-[100px] min-h-screen">
@@ -62,8 +60,9 @@ const AllFoods = () => {
             </h2>
           </div>
 
-          {/* Search */}
-          <div className="flex justify-center items-center">
+          {/* Search + Sort */}
+          <div className="flex justify-center items-center gap-3 flex-wrap">
+            {/* Search */}
             <label className="input input-bordered flex items-center gap-2 bg-white dark:bg-gray-800 dark:text-white border dark:border-gray-600">
               <svg
                 className="h-[1em] opacity-50"
@@ -89,10 +88,22 @@ const AllFoods = () => {
                 className="grow bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
               />
             </label>
+
+            {/* Sort */}
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="select select-bordered bg-white focus:outline-none dark:bg-gray-800 dark:text-white border dark:border-gray-600"
+            >
+              <option value="">Default</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+            </select>
           </div>
 
+          {/* Loading Skeleton */}
           {isLoading ? (
-            <FoodCardSkeleton></FoodCardSkeleton>
+            <FoodCardSkeleton />
           ) : (
             <>
               {/* Food Grid */}

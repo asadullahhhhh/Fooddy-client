@@ -10,7 +10,7 @@ export default function FoodCardSkeleton({ count = 6 }) {
   return (
     <div className={`${
         darkLight ? "dark" : ""
-      } dark:bg-gray-900`}>
+      } dark:bg-gray-900 mt-5`}>
         <div
       className={`grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto gap-6`}
     >
