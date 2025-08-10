@@ -2,6 +2,7 @@ import { FaFacebookF, FaInstagram, FaPhone } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AuthContext } from "../../Context/ContextProvider";
 import { use } from "react";
+import { Link } from "react-router";
 
 export default function Footer() {
   const { darkLight } = use(AuthContext);
@@ -24,9 +25,13 @@ export default function Footer() {
           </div>
 
           {/* Logo */}
-          <div className="text-3xl font-semibold flex items-center justify-center">
-            <span className="text-gray-800 italic dark:text-white">food</span>
-            <span className="text-yellow-500 italic">dy</span>
+          <div className="text-gray-600 dark:text-gray-200 top-10 left-10 text-4xl font-semibold">
+            <Link to={"/"}>
+              <p>
+                F<span className="text-orange-400">O</span>
+                <span className="-ml-4 text-orange-400">O</span>DY
+              </p>
+            </Link>
           </div>
 
           {/* Contact */}

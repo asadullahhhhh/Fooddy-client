@@ -4,6 +4,11 @@ import { AuthContext } from "../../Context/ContextProvider";
 import toast from "react-hot-toast";
 import { getElement, setElement } from "../../Utility/Utility";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
+import { MdFastfood } from "react-icons/md";
+import { FaPlusCircle } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import userDemo from '../../assets/user.png';
 
 const Navbar = () => {
   const { isOpen, setIsOpen, user, logOut, setUser, darkLight, setDarkLight } =
@@ -62,7 +67,7 @@ const Navbar = () => {
           All Foods
         </NavLink>
       </li>
-       <li>
+      <li>
         <NavLink
           to={`/menu`}
           className={({ isActive }) =>
@@ -82,7 +87,7 @@ const Navbar = () => {
           Gallery
         </NavLink>
       </li>
-       <li>
+      <li>
         <NavLink
           to={"/aboutus"}
           className={({ isActive }) =>
@@ -99,11 +104,14 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          to={"my-food"}
+          to={"/my-food"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
+            isActive
+              ? "text-blue-500 font-semibold flex justify-center items-center gap-2"
+              : "flex items-center justify-center gap-2 dark:text-white"
           }
         >
+          <MdFastfood size={18} />
           My Foods
         </NavLink>
       </li>
@@ -111,21 +119,32 @@ const Navbar = () => {
         <NavLink
           to={"/add-food"}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
+            isActive
+              ? "text-blue-500 font-semibold flex justify-center items-center gap-2"
+              : "flex items-center justify-center gap-2 dark:text-white"
           }
         >
-          Add food
+          <FaPlusCircle size={18} />
+          Add Food
         </NavLink>
       </li>
       <li>
         <NavLink
           to={`/my-orders`}
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-semibold" : "dark:text-black"
+            isActive
+              ? "text-blue-500 font-semibold flex justify-center items-center gap-2"
+              : "flex items-center gap-2 justify-center dark:text-white"
           }
         >
+          <FaShoppingBag size={18} />
           My Orders
         </NavLink>
+      </li>
+      <li>
+        <button onClick={handelLogOut} className="text-center w-full border rounded-2xl mt-2 py-1.5 font-semibold text-red-400 flex justify-center">
+         <FiLogOut className="text-lg" /> Logout
+        </button>
       </li>
     </>
   );
@@ -133,7 +152,7 @@ const Navbar = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-full backdrop-blur-md lg:h-[72px] border-b duration-500 z-50 transition-colors
-    bg-white/60 border-white/30 shadow-sm
+    bg-white/60 border-white/30 shadow-sm lg:px-5 xl:px-0
     dark:bg-[#0f172a]/70 dark:border-gray-700 ${darkLight ? "dark" : ""}`}
     >
       <div className="navbar max-w-7xl mx-auto  dark:text-white">
@@ -185,15 +204,15 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 z-50 cursor-pointer"
             >
-              <img src={user?.photoURL} alt="" className="object-cover" />
+              <img src={user?.photoURL || userDemo} alt="" className="object-cover" />
               <div
-                className={`overflow-hidden absolute top-14 rounded-b-sm transition-all duration-200 bg-white dark:bg-gray-700 ${
+                className={`overflow-hidden absolute top-12 lg:top-14 rounded-b-sm right-1 2xl:right-[15%] transition-all duration-200 ${
                   isOpen ? "scale-100" : "scale-0"
                 }`}
               >
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-white dark:bg-gray-700 rounded-box z-1 mt-3 p-2"
+                  className="menu menu-sm dropdown-content bg-white space-y-1 dark:bg-gray-700 w-[180px]  rounded-box z-1 mt-4 p-2"
                 >
                   {userLinks}
                 </ul>
@@ -204,26 +223,19 @@ const Navbar = () => {
           )}
           <div onClick={handelDarkMood}>
             {darkLight ? (
-              <button className="btn btn-sm md:btn-md dark:bg-[#333] dark:border-gray-600">
-                <MdDarkMode color="#fff" />
+              <button className="py-2 cursor-pointer">
+                <MdDarkMode color="#fff" size={25} />
               </button>
             ) : (
-              <button className="btn">
-                <MdOutlineLightMode />
+              <button className="py-2 cursor-pointer">
+                <MdOutlineLightMode size={25} />
               </button>
             )}
           </div>
-          {user ? (
-            <button
-              onClick={handelLogOut}
-              className="btn dark:bg-gray-700 dark:text-white"
-            >
-              Log out
-            </button>
-          ) : (
+          {user ? "" : (
             <Link
               to={"/login"}
-              className="btn dark:bg-gray-700 dark:text-white"
+              className=" bg-blue-500 px-5 py-2 rounded-xl font-medium hover:bg-blue-600 text-white"
             >
               Log in
             </Link>

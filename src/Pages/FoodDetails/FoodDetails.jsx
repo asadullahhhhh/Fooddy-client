@@ -20,7 +20,7 @@ const FoodDetails = () => {
 
   return (
     <section
-      className={`bg-gray-100 min-h-[calc(100vh-65px)] dark:bg-gray-800 flex justify-center items-center ${
+      className={`bg-gray-100 min-h-[calc(100vh-65px)] mt-[64px] lg:mt-[72px] dark:bg-gray-800 flex justify-center items-center ${
         darkLight ? "dark" : ""
       }`}
     >

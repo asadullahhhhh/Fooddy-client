@@ -84,7 +84,7 @@ const MyAddedFood = () => {
   if (foods.length === 0)
     return (
       <div
-        className={`min-h-[calc(100vh-309px)] flex items-center justify-center ${
+        className={`min-h-[calc(100vh-309px)] mt-[64px] flex items-center dark:bg-gray-900 justify-center ${
           darkLight ? "dark" : ""
         }`}
       >
@@ -101,7 +101,7 @@ const MyAddedFood = () => {
 
   return (
     <section
-      className={`min-h-[calc(100vh-65px)] px-5 ${
+      className={`min-h-[calc(100vh-65px)] mt-[64px] lg:mt-[72px] px-5 ${
         darkLight
           ? "dark bg-gray-900 text-gray-300"
           : "bg-gray-100 text-gray-700"

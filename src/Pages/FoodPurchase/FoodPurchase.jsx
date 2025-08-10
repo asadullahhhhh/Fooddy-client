@@ -85,7 +85,7 @@ const FoodPurchase = () => {
 
   return (
     <div
-      className={`min-h-screen py-10 px-4 bg-gray-100 dark:bg-gray-900 ${
+      className={`min-h-screen py-10 px-4 mt-[64px] lg:mt-[72px] bg-gray-100 dark:bg-gray-900 ${
         darkLight ? "dark" : ""
       }`}
     >

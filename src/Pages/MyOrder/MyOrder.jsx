@@ -59,7 +59,7 @@ const MyOrder = () => {
   if (orders.length === 0)
     return (
       <div
-        className={`min-h-[calc(100vh-309px)] flex items-center justify-center bg-gray-100 dark:bg-gray-900 ${
+        className={`min-h-[calc(100vh-309px)] mt-[64px] flex items-center justify-center bg-gray-100 dark:bg-gray-900 ${
           darkLight ? "dark" : ""
         }`}
       >
@@ -76,7 +76,7 @@ const MyOrder = () => {
 
   return (
     <section
-      className={`min-h-[calc(100vh-65px)] dark:bg-gray-900 bg-gray-100 ${
+      className={`min-h-[calc(100vh-65px)] mt-[64px] lg:mt-[72px] dark:bg-gray-900 bg-gray-100 ${
         darkLight ? "dark" : ""
       }`}
     >

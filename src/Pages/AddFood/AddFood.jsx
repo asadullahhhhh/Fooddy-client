@@ -64,10 +64,10 @@ const AddFood = () => {
     <section
       className={`${
         darkLight ? "dark" : ""
-      } min-h-[calc(100vh-65px)] bg-gray-100 dark:bg-gray-900 `}
+      } min-h-[calc(100vh-65px)] mt-[64px] lg:mt-[72px] bg-gray-100 dark:bg-gray-900 `}
     >
-      <section className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-100 dark:from-gray-800 dark:to-gray-900 py-10">
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-10">
+      <section className="min-h-screen bg-gradient-to-tr from-green-50 via-orange-100/70 to-blue-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 py-10">
+        <div className="max-w-4xl mx-auto bg-amber-50/50 dark:bg-gray-800 shadow-2xl rounded-2xl p-10">
           <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">
             🍽️ Add a New Food Item
           </h2>
@@ -83,7 +83,7 @@ const AddFood = () => {
               <input
                 type="text"
                 name="name"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="Enter food name"
                 required
               />
@@ -97,7 +97,7 @@ const AddFood = () => {
               <input
                 type="text"
                 name="image"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500  outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="https://example.com/food.jpg"
                 required
               />
@@ -110,7 +110,7 @@ const AddFood = () => {
               </label>
               <select
                 name="category"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600"
               >
                 <option value="" className="text-gray-500 dark:text-gray-400">
                   select category
@@ -131,7 +131,7 @@ const AddFood = () => {
               <input
                 type="text"
                 name="origin"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500  outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="e.g., Italy"
                 required
               />
@@ -145,7 +145,7 @@ const AddFood = () => {
               <input
                 type="number"
                 name="quantity"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500  outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="quantity"
                 required
               />
@@ -159,7 +159,7 @@ const AddFood = () => {
               <input
                 type="number"
                 name="price"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500  outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="price"
                 required
               />
@@ -173,7 +173,7 @@ const AddFood = () => {
               <textarea
                 name="description"
                 rows="4"
-                className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-400 outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
+                className="w-full px-4 py-2 border rounded-xl focus:ring focus:ring-amber-500  outline-none bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="Ingredients, how it's made, etc."
                 required
               />
@@ -183,7 +183,7 @@ const AddFood = () => {
             <div className="md:col-span-2 text-center">
               <button
                 type="submit"
-                className="bg-gradient-to-r w-full from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold cursor-pointer hover:from-pink-500 hover:to-purple-500"
+                className="w-full bg-orange-300 py-3 text-gray-700 font-medium cursor-pointer hover:bg-orange-400/65 rounded-2xl "
               >
                 Add Item
               </button>
